@@ -1,1 +1,3 @@
 /venv/
+/CoffeeShopDB.db-wal
+/CoffeeShopDB.db-shm
