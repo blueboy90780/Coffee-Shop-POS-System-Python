@@ -124,8 +124,17 @@ while userChoice != 5:
 
         for i in result:
             print(str(i[0]) + ": " + str(i[1]))
-    # elif userInput == 4:
-    #     # Do something
+
+    elif userInput == 4:
+        result = cursor.execute("""
+            SELECT SUM(ProductProperties.Price)
+            FROM CustomerOrders
+            INNER JOIN ProductProperties ON CustomerOrders.ProductPropertiesId = ProductProperties.ProductPropertiesId
+        """)
+
+        print("Your total price is {0}".format(result.fetchall()[0][0]))
+
+        break
     # elif userInput == 5:
     #     # Do something
     # else:
