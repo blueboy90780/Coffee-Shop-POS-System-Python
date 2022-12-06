@@ -71,8 +71,7 @@ def get_customer_order():
     return result
 
 
-
-while userChoice != 5:
+while True:
     print("\nOptions: " +
           "\n1: Add an item to Customer Order" +
           "\n2: Delete an item from Customer Order" +
@@ -111,7 +110,7 @@ while userChoice != 5:
             userInput = input()
 
             # Deletes the corresponding line
-            cursor.execute("DELETE FROM CustomerOrders WHERE CustomerOrderId = ?",userInput)
+            cursor.execute("DELETE FROM CustomerOrders WHERE CustomerOrderId = ?", userInput)
 
             # Commit connection
             connection.commit()
@@ -132,12 +131,11 @@ while userChoice != 5:
             INNER JOIN ProductProperties ON CustomerOrders.ProductPropertiesId = ProductProperties.ProductPropertiesId
         """)
 
-        print("Your total price is {0}".format(result.fetchall()[0][0]))
-
+        print("Your total price is {0}".format(result))
         break
-    # elif userInput == 5:
-    #     # Do something
-    # else:
-    #     print("That is not a valid option")
 
-print(cursor.fetchall())
+    elif userInput == 5:
+        print("Ending day....")
+        break
+    else:
+        print("That is not a valid option")
