@@ -11,6 +11,8 @@ cursor = connection.cursor()
 # Variable Declarations
 userChoice = 0
 customerNumber = 1
+customer_number = 1
+total_revenue = 0
 
 print("Welcome to David's Project #1: Coffee Shop POS System. This current state (beta) does not have any UI element "
       "nor does it have any AI elements. All inputs are to be manually given by the user (employee) for another "
@@ -72,6 +74,9 @@ def get_customer_order():
 
 
 while True:
+    #Displays Customer Number and their corresponding order
+    print("\nCustomer Number: " + str(customer_number))
+
     print("\nOptions: " +
           "\n1: Add an item to Customer Order" +
           "\n2: Delete an item from Customer Order" +
@@ -132,9 +137,23 @@ while True:
         """)
 
         print("Your total price is {0}".format(result))
+
+        total_revenue. += result
+        customer_number += 1
         break
 
     elif userInput == 5:
+
+        print("Total amount of customers served: " + customer_number)
+        print("Total revenue achieved" + total_revenue)
+
+        result = cursor.execute("""
+                    SELECT SUM(ProductProperties.Price)
+                    FROM CustomerOrders
+                    INNER JOIN ProductProperties ON CustomerOrders.ProductPropertiesId = ProductProperties.ProductPropertiesId
+                """)
+
+        customer_number += 1
         print("Ending day....")
         break
     else:
